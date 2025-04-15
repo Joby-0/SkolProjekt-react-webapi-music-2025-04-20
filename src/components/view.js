@@ -1,23 +1,9 @@
 import React, { Component, useState, useEffect, setState } from "react";
 
-export function View() {
+export function View(props) {
 
-    const [apidata, setapidata] = useState();
-    useEffect(() => {
-        (async () => {
-            try {
-                const id = "4ea7b701-44e0-4b1d-8348-0002c64767bd"
-                let response = await fetch(`https://seido-webservice-307d89e1f16a.azurewebsites.net/api/MusicGroup/ReadItem?id=${id}&flat=false`);
-                let data = await response.json();
-                console.log("", data);
-
-                setapidata(data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-
-        })();
-    }, []);
+    console.log(props.apidata);
+    
 
     return (
         <div className="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
@@ -26,26 +12,26 @@ export function View() {
                     <div className="row g-3">
                         <div className="col-sm-6">
                             <label htmlFor="groupName" className="form-label">Group Name</label>
-                            <input type="text" className="form-control" id="groupName" value={apidata?.name} readOnly />
+                            <input type="text" className="form-control" id="groupName" value={props.apidata?.name} readOnly />
                         </div>
 
                         <div className="col-sm-6">
                             <label htmlFor="genre" className="form-label">Genre</label>
-                            <input type="text" className="form-control" id="genre" value={apidata?.strGenre} readOnly />
+                            <input type="text" className="form-control" id="genre" value={props.apidata?.strGenre} readOnly />
                         </div>
 
                         <div className="col-sm-6"></div>
 
                         <div className="col-sm-6">
                             <label htmlFor="established" className="form-label">Established Year</label>
-                            <input type="text" className="form-control" id="established" value={apidata?.establishedYear} readOnly />
+                            <input type="text" className="form-control" id="established" value={props.apidata?.establishedYear} readOnly />
                         </div>
                     </div>
 
                     <div id="artists" className="row g-1 mt-4">
                         <h3 className="pb-2">Artists</h3>
                         {
-                            apidata?.artists?.map((artist) => (
+                            props.apidata?.artists?.map((artist) => (
                                 <div className="row mb-2 text-center">
                                     <div className="col-md-12 themed-grid-col">{artist.firstName} {artist.lastName}</div>
                                 </div>
@@ -60,7 +46,7 @@ export function View() {
                             <div className="col-md-10 themed-grid-head-col">Name</div>
                             <div className="col-md-2 themed-grid-head-col">Year</div>
                         </div>
-                        {apidata?.albums?.map((album)=> (
+                        {props.apidata?.albums?.map((album)=> (
                             <div className="row mb-2 text-center">
                                 <div className="col-md-10 themed-grid-col">{album.name}</div>
                                 <div className="col-md-2 themed-grid-col">{album.releaseYear}</div>
