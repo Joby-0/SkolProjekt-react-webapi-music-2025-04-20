@@ -39,10 +39,6 @@ export function ListPage() {
     setCurrentPageFilter(e)
 
   };
-  const handledbcount = async (e) => {
-    console.log(e);
-    setCurrentDbItems(e);
-  }
   return (
     <>
 

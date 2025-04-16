@@ -1,15 +1,17 @@
 import React, { Component, useState, useEffect, setState } from "react";
+import { useParams } from 'react-router';
 
 
 import { View } from '../components/view'
 
 
 export function ViewPage() {
+  const { id } = useParams();
   const [apidata, setapidata] = useState();
     useEffect(() => {
         (async () => {
             try {
-                const id = "4ea7b701-44e0-4b1d-8348-0002c64767bd"
+                
                 let response = await fetch(`https://seido-webservice-307d89e1f16a.azurewebsites.net/api/MusicGroup/ReadItem?id=${id}&flat=false`);
                 let data = await response.json();
                 console.log("", data);

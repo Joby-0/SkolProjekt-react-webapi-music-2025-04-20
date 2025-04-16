@@ -1,17 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { ListPage } from './pages/ListPage';
+import { BrowserRouter} from 'react-router';
 import { Header } from './components/header';
-import { ViewPage } from './pages/ViewPage';
+import Approuter from './routes/approuter';
 
 function App() {
   return (
     <>
-    <Header/>
-    <ViewPage/>
+      <BrowserRouter>
+      <Header/>
+      <Approuter />
+      </BrowserRouter>
     </>
-    
+
   );
 }
 
