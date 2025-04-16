@@ -24,6 +24,16 @@ export default function musciApiService(url) {
         
         return data;
     }
+    this.viewItem = async function (id, url) {
+        url = this.url + `/MusicGroup/ReadItem?id=${id}&flat=false`;
+        let response = await fetch(url);
+
+        let data = await response.json();
+        console.log(data);
+        
+        return data;
+        
+    }
 
 
 }

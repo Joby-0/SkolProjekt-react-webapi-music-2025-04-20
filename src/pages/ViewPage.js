@@ -3,24 +3,17 @@ import { useParams } from 'react-router';
 
 
 import { View } from '../components/view'
+import musciApiService from "../services/myservice";
 
 
 export function ViewPage() {
   const { id } = useParams();
   const [apidata, setapidata] = useState();
+  const service = new musciApiService("https://seido-webservice-307d89e1f16a.azurewebsites.net/api");
     useEffect(() => {
         (async () => {
-            try {
-                
-                let response = await fetch(`https://seido-webservice-307d89e1f16a.azurewebsites.net/api/MusicGroup/ReadItem?id=${id}&flat=false`);
-                let data = await response.json();
-                console.log("", data);
-
-                setapidata(data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-
+            let data = await service.viewItem(id);
+            setapidata(data);
         })();
     }, []);
     

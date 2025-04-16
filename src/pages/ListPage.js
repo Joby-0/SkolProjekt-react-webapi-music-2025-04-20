@@ -18,9 +18,7 @@ export function ListPage() {
   useEffect(() => {
     (async () => {
       let data = await service.getData(currentPage, currentFilter)
-      // currentState.pagecout = data.pageCount;
-      // currentState.dbItemsCount = data.dbItemsCount;
-      console.log(data);
+     
       setapidata(data);
       setCurrentPageCount(data.pageCount);
       setCurrentDbItems(data.dbItemsCount)
